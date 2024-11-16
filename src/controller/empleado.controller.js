@@ -12,13 +12,13 @@ export const getMedico = async (req, res) => {
 }
 
 export const getMedicoById = async (req,res) => {
-    const {id} = req.params;
+    const {id_medico} = req.params;
     
     const pool = await getConnection();
 
     const result = await pool
     .request()
-    .input('Id', id)
+    .input('Id', id_medico)
     .query("SELECT * FROM medico WHERE id_medico = @Id");
     console.log(result)
     res.json(result.recordset[0]);
