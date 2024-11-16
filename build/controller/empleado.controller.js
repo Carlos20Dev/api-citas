@@ -11,7 +11,7 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var getMedico = exports.getMedico = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var result, query;
+    var pool, result;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -19,13 +19,13 @@ var getMedico = exports.getMedico = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _database.getConnection)();
         case 3:
-          result = _context.sent;
+          pool = _context.sent;
           _context.next = 6;
-          return result.request().query("SELECT * FROM medico");
+          return pool.request().query("SELECT * FROM medico");
         case 6:
-          query = _context.sent;
-          console.log(query);
-          res.json(result.recorset);
+          result = _context.sent;
+          console.log(result);
+          res.json(result.recordset);
           _context.next = 14;
           break;
         case 11:
@@ -44,17 +44,17 @@ var getMedico = exports.getMedico = /*#__PURE__*/function () {
 }();
 var getMedicoById = exports.getMedicoById = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(req, res) {
-    var id, pool, result;
+    var id_medico, pool, result;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          id = req.params.id;
+          id_medico = req.params.id_medico;
           _context2.next = 3;
           return (0, _database.getConnection)();
         case 3:
           pool = _context2.sent;
           _context2.next = 6;
-          return pool.request().input('Id', id).query("SELECT * FROM medico WHERE id_medico = @Id");
+          return pool.request().input('Id', id_medico).query("SELECT * FROM medico WHERE id_medico = @Id");
         case 6:
           result = _context2.sent;
           console.log(result);
