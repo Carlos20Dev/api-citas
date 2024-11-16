@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
-app.get('/api',empleadoRoutes)
+app.use('/api',empleadoRoutes)
 
 export default app
