@@ -21,5 +21,5 @@ app.use(_express["default"].json());
 app.use(_express["default"].urlencoded({
   extended: false
 }));
-app.use('/api/empleado', _empleado["default"]);
+app.use('/api/medico', _empleado["default"]);
 var _default = exports["default"] = app;

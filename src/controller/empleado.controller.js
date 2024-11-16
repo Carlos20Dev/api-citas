@@ -1,9 +1,9 @@
 import { getConnection, sql } from "../database";
 
-export const getEmpleado = async (req, res) => {
+export const getMedico = async (req, res) => {
     try {
         const result = await getConnection()
-        const query = await result.request().query("SELECT * FROM empleado")
+        const query = await result.request().query("SELECT * FROM medico")
         console.log(query)
         res.json(result.recorset)
     } catch (err) {
@@ -11,7 +11,7 @@ export const getEmpleado = async (req, res) => {
     }
 }
 
-export const getEmpleadoById = async (req,res) => {
+export const getMedicoById = async (req,res) => {
     const {id} = req.params;
     
     const pool = await getConnection();
@@ -19,16 +19,16 @@ export const getEmpleadoById = async (req,res) => {
     const result = await pool
     .request()
     .input('Id', id)
-    .query("SELECT * FROM Empleado WHERE id_empleado = @Id");
+    .query("SELECT * FROM medico WHERE id_medico = @Id");
     console.log(result)
     res.send(result.recordset[0]);
 }
 
-export const crearEmpleado = async (req,res) => {
-    const {id_empleado ,nombre, apellido, telefono, email, id_espec, id_user, id_tipo} = req.body;
+export const crearMedico = async (req,res) => {
+    const {id_medico ,nombre, apellido, telefono, dni, fecha_nac, email, id_espec} = req.body;
 
 
-    if(nombre == null || apellido == null || email == null || telefono == null || id_espec == null || id_user == null || id_tipo == null) {
+    if(nombre == null || apellido == null || email == null || telefono == null || dni == null || fecha_nac == null || id_espec == null) {
         return res.status(400).send('Todos los campos son obligatorios');
 
     }
@@ -37,30 +37,30 @@ export const crearEmpleado = async (req,res) => {
         const pool = await getConnection();
         
         await pool.request()
-        .input('Id_empleado', sql.Int, id_empleado)
+        .input('Id_medico', sql.Int, id_medico)
         .input('Nombre', sql.VarChar, nombre)
         .input('Apellido', sql.VarChar, apellido)
         .input('Telefono', sql.Char, telefono)
+        .input('Dni', sql.Char, dni)
+        .input('Fecha_nac', sql.Date, fecha_nac)
         .input('Email', sql.VarChar, email)
         .input('Id_espec', sql.Int, id_espec)
-        .input('Id_user', sql.Int, id_user)
-        .input('Id_tipo', sql.Int, id_tipo)
-        .query("INSERT INTO empleado (id_empleado,nombre, apellido, telefono, email, id_espec, id_user, id_tipo) VALUES (@Id_empleado, @Nombre, @Apellido, @Telefono, @Email, @Id_espec, @Id_user, @Id_tipo)")
-        console.log(id_empleado,nombre,apellido, telefono, email, id_espec, id_user, id_tipo ) 
-        res.json({id_empleado, nombre,apellido, telefono, email, id_espec, id_user, id_tipo})
+        .query("INSERT INTO medico (id_medico ,nombre, apellido, telefono, dni, fecha_nac, email, id_espec) VALUES (@Id_medico, @Nombre, @Apellido, @Telefono, @Dni, @Fecha_nac, @Email, @Id_espec)")
+        console.log(id_medico ,nombre, apellido, telefono, dni, fecha_nac, email, id_espec) 
+        res.json({id_medico ,nombre, apellido, telefono, dni, fecha_nac, email, id_espec})
     } catch (error) {
         console.log(error)
         res.status(500);
     }
 }
 
-// Eliminar un empleado
-export const eliminarEmpleado = async (req, res) => {
+// Eliminar un medico
+export const eliminarMedico = async (req, res) => {
     const { id } = req.params;
     try {
-        await sql.query`DELETE FROM empleado WHERE id_empleado = ${id}`;
-        res.json({ message: 'Empleado eliminado con éxito' });
+        await sql.query`DELETE FROM medico WHERE id_medico = ${id}`;
+        res.json({ message: 'Medico eliminado con éxito' });
     } catch (error) {
-        res.status(500).json({ error: 'Error al eliminar empleado', details: error.message });
+        res.status(500).json({ error: 'Error al eliminar medico', details: error.message });
     }
 };

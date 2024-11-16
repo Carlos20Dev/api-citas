@@ -1,7 +1,7 @@
 import express from 'express'
 import config from './config'
 import { getConnection } from './database'
-import empleadoRoutes from './routes/empleado.routes'
+import medicoRoutes from './routes/empleado.routes'
 
 getConnection()
 
@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
-app.use('/api/empleado',empleadoRoutes)
+app.use('/api/medico',medicoRoutes)
 
 export default app
