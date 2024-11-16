@@ -3,9 +3,9 @@ import { getEmpleado, getEmpleadoById, crearEmpleado, eliminarEmpleado } from ".
 
 const router = Router()
 
-router.get('/empleado', getEmpleado)
-router.get('/empleado/:id_empleado', getEmpleadoById)
-router.post('/empleado', crearEmpleado)
-router.delete('/empleado/:id', eliminarEmpleado)
+router.get('/', getEmpleado)
+router.get('/:id_empleado', getEmpleadoById)
+router.post('/', crearEmpleado)
+router.delete('/:id_empleado', eliminarEmpleado)
 
 export default router
