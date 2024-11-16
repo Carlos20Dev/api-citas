@@ -2,12 +2,12 @@ import { getConnection, sql } from "../database";
 
 export const getMedico = async (req, res) => {
     try {
-        const result = await getConnection()
-        const query = await result.request().query("SELECT * FROM medico")
-        console.log(query)
-        res.json(result.recorset)
-    } catch (err) {
-        console.log(err)
+        const pool = await getConnection();
+        const result = await pool.request().query("SELECT * FROM medico")
+        console.log(result);
+        res.json(result.recordset)
+    } catch (error) {
+        console.log(error)
     }
 }
 
