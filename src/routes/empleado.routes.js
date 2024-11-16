@@ -4,8 +4,8 @@ import { getMedico, getMedicoById, crearMedico, eliminarMedico } from "../contro
 const router = Router()
 
 router.get('/', getMedico)
-router.get('/:id_empleado', getMedicoById)
+router.get('/:id_medico', getMedicoById)
 router.post('/', crearMedico)
-router.delete('/:id_empleado', eliminarMedico)
+router.delete('/:id_medico', eliminarMedico)
 
 export default router
