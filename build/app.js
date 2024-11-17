@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _express = _interopRequireDefault(require("express"));
+var _cors = _interopRequireDefault(require("cors"));
 var _config = _interopRequireDefault(require("./config"));
 var _database = require("./database");
 var _empleado = _interopRequireDefault(require("./routes/empleado.routes"));
@@ -14,6 +15,12 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 (0, _database.getConnection)();
 var app = (0, _express["default"])();
 app.set('port', _config["default"].port);
+app.use((0, _cors["default"])({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 
 // Ruta para la raíz
 app.get('/', function (req, res) {

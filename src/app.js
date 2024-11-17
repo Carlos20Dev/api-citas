@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import config from './config'
 import { getConnection } from './database'
 import medicoRoutes from './routes/empleado.routes'
@@ -10,6 +11,13 @@ getConnection()
 const app = express()
 
 app.set('port',config.port)
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+    optionsSuccessStatus: 200,
+}))
 
 // Ruta para la raíz
 app.get('/', (req, res) => {
