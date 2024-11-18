@@ -34,7 +34,7 @@ export const getMedicoByEspec = async (req, res) => {
     .input('Id_espec', id_espec)
     .query("SELECT * FROM medico WHERE id_espec = @Id_espec")
     console.log(result)
-    res.json(result.recordset[0])
+    res.json(result.recordset)
 }
 
 export const crearMedico = async (req,res) => {

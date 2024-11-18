@@ -85,7 +85,7 @@ var getMedicoByEspec = exports.getMedicoByEspec = /*#__PURE__*/function () {
         case 6:
           result = _context3.sent;
           console.log(result);
-          res.json(result.recordset[0]);
+          res.json(result.recordset);
         case 9:
         case "end":
           return _context3.stop();
