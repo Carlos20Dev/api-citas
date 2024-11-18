@@ -24,6 +24,19 @@ export const getMedicoById = async (req,res) => {
     res.json(result.recordset[0]);
 }
 
+export const getMedicoByEspec = async (req, res) => {
+    const { id_espec } = req.params;
+
+    const pool = await getConnection()
+
+    const result = await pool
+    .request()
+    .input('Id_espec', id_espec)
+    .query("SELECT * FROM medico WHERE id_espec = @Id_espec")
+    console.log(result)
+    res.json(result.recordset[0])
+}
+
 export const crearMedico = async (req,res) => {
     const {nombre, apellido, telefono, dni, fecha_nac, email, id_espec} = req.body;
 
