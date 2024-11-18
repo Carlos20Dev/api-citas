@@ -81,7 +81,7 @@ var getRegistroTurnoByIdMedico = exports.getRegistroTurnoByIdMedico = /*#__PURE_
         case 3:
           pool = _context3.sent;
           _context3.next = 6;
-          return pool.request().input('Id', id_medico).query("SELECT * FROM reg_turno WHERE id_medico = @Id");
+          return pool.request().input('Id', id_medico).query("SELECT h.id_horario, h.fecha, h.hora_inicio, h.hora_fin, rt.num_pacientes FROM reg_turno rt JOIN horario h ON rt.id_horario = h.id_horario WHERE rt.id_medico = @Id");
         case 6:
           result = _context3.sent;
           console.log(result);
