@@ -27,7 +27,7 @@ export const getRegistroTurnoById = async (req, res) => {
 export const createRegistroTurno = async (req, res) => {
     const { num_pacientes, id_medico, id_horario } = req.body
 
-    if ( num_pacientes == null || id_medico == null || id_horario ) {
+    if ( num_pacientes == null || id_medico == null || id_horario == null ) {
         return res.status(400).send('Todos los campos son obligatorios')
     }
 

@@ -76,7 +76,7 @@ var createRegistroTurno = exports.createRegistroTurno = /*#__PURE__*/function ()
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _req$body = req.body, num_pacientes = _req$body.num_pacientes, id_medico = _req$body.id_medico, id_horario = _req$body.id_horario;
-          if (!(num_pacientes == null || id_medico == null || id_horario)) {
+          if (!(num_pacientes == null || id_medico == null || id_horario == null)) {
             _context3.next = 3;
             break;
           }
