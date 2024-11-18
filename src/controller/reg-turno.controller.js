@@ -24,6 +24,19 @@ export const getRegistroTurnoById = async (req, res) => {
     res.json(result.recordset[0])
 }
 
+export const getRegistroTurnoByIdMedico = async (req, res) => {
+    const { id_medico } = req.params
+
+    const pool = await getConnection()
+
+    const result = await pool
+        .request()
+        .input('Id', id_medico)
+        .query("SELECT * FROM reg_turno WHERE id_medico = @Id")
+    console.log(result)
+    res.json(result.recordset)
+}
+
 export const createRegistroTurno = async (req, res) => {
     const { num_pacientes, id_medico, id_horario } = req.body
 
