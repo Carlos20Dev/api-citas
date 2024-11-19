@@ -88,7 +88,7 @@ var crearCitas = exports.crearCitas = /*#__PURE__*/function () {
         case 6:
           pool = _context3.sent;
           _context3.next = 9;
-          return pool.request().input('Estado', _database.sql.VarChar, estado).input('Id_user', _database.sql.VarChar, id_user).input('Id_rt', _database.sql.Char, id_rt).query("INSERT INTO citas (estado, id_user, id_rt) VALUES (@Estado, @Id_user, @Id_rt)");
+          return pool.request().input('Estado', _database.sql.VarChar, estado).input('Id_user', _database.sql.Int, id_user).input('Id_rt', _database.sql.Int, id_rt).query("INSERT INTO citas (estado, id_user, id_rt) VALUES (@Estado, @Id_user, @Id_rt)");
         case 9:
           console.log(estado, id_user, id_rt);
           res.json({

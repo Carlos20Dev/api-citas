@@ -30,14 +30,14 @@ export const crearCitas = async (req,res) => {
     if(estado == null || id_user == null || id_rt == null) {
         return res.status(400).send('Todos los campos son obligatorios');
     }
-
+ 
     try {
         const pool = await getConnection();
         
         await pool.request()
         .input('Estado', sql.VarChar, estado)
-        .input('Id_user', sql.VarChar, id_user)
-        .input('Id_rt', sql.Char, id_rt)
+        .input('Id_user', sql.Int, id_user)
+        .input('Id_rt', sql.Int, id_rt)
         .query("INSERT INTO citas (estado, id_user, id_rt) VALUES (@Estado, @Id_user, @Id_rt)")
         console.log(estado, id_user, id_rt)
         res.json({estado, id_user, id_rt})

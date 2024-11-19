@@ -23,3 +23,24 @@ export const getEspecialidadById = async (req, res) => {
     console.log(result)
     res.json(result.recordset[0])
 }
+
+export const crearEspecialidad = async (req,res) => {
+    const { nombre } = req.body;
+
+    if(nombre == null) {
+        return res.status(400).send('Todos los campos son obligatorios');
+    }
+ 
+    try {
+        const pool = await getConnection();
+        
+        await pool.request()
+        .input('Nombre', sql.VarChar, nombre)
+        .query("INSERT INTO especialidad (nombre) VALUES (@Nombre)")
+        console.log(estado)
+        res.json({estado})
+    } catch (error) {
+        console.log(error)
+        res.status(500);
+    }
+}
