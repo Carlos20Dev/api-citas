@@ -7,4 +7,5 @@ export default {
     dbpassword: process.env.DB_PASSWORD || '',
     server: process.env.DB_SERVER || '',
     database: process.env.DB_DATABASE || '',
+    SECRET: process.env.SECRET || '',
 }
