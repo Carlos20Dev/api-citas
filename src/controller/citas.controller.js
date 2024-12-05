@@ -73,7 +73,7 @@ export const actualizarCitas = async (req, res) => {
     }
 }
 
-// Eliminar un medico
+// Eliminar un citas
 export const eliminarCitas = async (req, res) => {
     const { id_citas } = req.params;
     try {
