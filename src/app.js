@@ -9,6 +9,9 @@ import especialidadRoutes from './routes/especialidad.routes'
 import horarioRoutes from './routes/horario.routes'
 import rolRoutes from './routes/rol.routes'
 import usuarioRoutes from './routes/usuario.routes'
+import autenticacion from './routes/auth.routes';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 
 getConnection()
 
@@ -30,6 +33,8 @@ app.get('/', (req, res) => {
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
+app.use(morgan('dev'))
+app.use(cookieParser());
 
 app.use('/api/medico',medicoRoutes)
 app.use('/api/turno',registroTurnoRoutes)
@@ -38,5 +43,6 @@ app.use('/api/especialidad',especialidadRoutes)
 app.use('/api/horario',horarioRoutes)
 app.use('/api/rol',rolRoutes)
 app.use('/api/usuario',usuarioRoutes)
+app.use('/api/autenticacion', autenticacion)
 
 export default app
